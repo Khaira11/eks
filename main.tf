@@ -46,7 +46,11 @@ module "eks" {
       max_size     = 2
       desired_size = 1
 
+<<<<<<< HEAD
       instance_types = ["t2.micro"] # Small, cost-efficient instance type
+=======
+      instance_types = ["t3.medium"] # Small, cost-efficient instance type
+>>>>>>> 0fff49664a292f7aa8c3c838c6d76716c590755f
     }
   }
 
