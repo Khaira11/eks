@@ -63,7 +63,7 @@ module "eks" {
       instance_types = ["t4g.small"]
 
       capacity_type = "ON_DEMAND"
-    ami_type = "AL2023_ARM_64_STANDARD"
+      ami_type      = "AL2023_ARM_64_STANDARD"
     }
   }
 }
