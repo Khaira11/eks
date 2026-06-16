@@ -27,7 +27,14 @@ module "vpc" {
 
 # 2. Create the EKS Cluster
 module "eks" {
-cluster_name = "beginner-eks-cluster"
+source  = "terraform-aws-modules/eks/aws"
+version = "~> 20.37"
+
+cluster_name    = "beginner-eks-cluster"
+cluster_version = "1.31"
+
+vpc_id     = module.vpc.vpc_id
+subnet_ids = module.vpc.public_subnets
 
 eks_managed_node_groups = {
 default = {
@@ -36,13 +43,11 @@ max_size     = 1
 desired_size = 1
 
 ```
-  instance_types = ["t3.micro"]
+  instance_types = ["t2.micro"]
+
+  capacity_type = "ON_DEMAND"
 }
 ```
 
 }
-}
-
-
-  
 }
