@@ -44,6 +44,5 @@ desired_size = 1
 }
 
 
-  # Automatically adds the creator (your AWS credentials) as the cluster administrator
-  enable_cluster_creator_admin_permissions = true
+  
 }
