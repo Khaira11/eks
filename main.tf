@@ -27,32 +27,22 @@ module "vpc" {
 
 # 2. Create the EKS Cluster
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
-  version = "~> 20.0"
+cluster_name = "beginner-eks-cluster"
 
-  cluster_name    = var.cluster_name
-  cluster_version = "1.30"
+eks_managed_node_groups = {
+default = {
+min_size     = 1
+max_size     = 1
+desired_size = 1
 
-  # Allows your GitHub Actions workflow to interact with the cluster API directly
-  cluster_endpoint_public_access = true
+```
+  instance_types = ["t3.micro"]
+}
+```
 
-  vpc_id     = module.vpc.vpc_id
-  subnet_ids = module.vpc.private_subnets
+}
+}
 
-  # Creates a simple managed node group (the worker servers)
-  eks_managed_node_groups = {
-    default = {
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
-
-<<<<<<< HEAD
-      instance_types = ["t2.micro"] # Small, cost-efficient instance type
-=======
-      instance_types = ["t3.medium"] # Small, cost-efficient instance type
->>>>>>> 0fff49664a292f7aa8c3c838c6d76716c590755f
-    }
-  }
 
   # Automatically adds the creator (your AWS credentials) as the cluster administrator
   enable_cluster_creator_admin_permissions = true
